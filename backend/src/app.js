@@ -13,6 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 // ── Health check (root-level for Docker) ─────────────────────────────────────
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 
+// ── About (root-level alias for requirement compliance) ──────────────────────
+const { getAbout } = require('./controllers/aboutController');
+app.get('/about', getAbout);
+
 // ── API Routes (all under /api) ───────────────────────────────────────────────
 app.use('/api', routes);
 
